@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    block title
+      title= title
+    block meta
+      meta()
+    block scripts
+      script(src='/javascripts/jquery-3.2.1.min.js')
+      script(src='/javascripts/plugins/jquery.dataTables.min.js')
+      script(src='/javascripts/plugins/jquery-ui.min.js')
+      script(src='/javascripts/htmls/findLog.js')
+      script(src='/javascripts/htmls/showLog.js')
+    block link
+      link(rel='stylesheet', href='/stylesheets/style.css')
+      link(rel='stylesheet', href='/stylesheets/jquery.dataTables.min.css')
+      link(rel='stylesheet', href='/stylesheets/jquery-ui.min.css')
+      
+  body
+    block main
+    
+    block foot
+      include footer.jade
