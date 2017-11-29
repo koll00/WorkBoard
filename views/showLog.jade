@@ -1,0 +1,68 @@
+extends layout
+
+block main
+  //findlog table
+  include findLog.jade
+  //showlog table
+  #showLog
+    #showLogTitle
+      h1 CES FTM LOG
+    #showLogView
+      table(id='showLogTable', class='logTableDisplay')
+        thead
+          tr
+              //tranId
+              th 交易码
+              //time
+              th 交易时间
+              //canrNo
+              th 交易卡号
+              //amt
+              th 交易金额
+              //respCode
+              th 交易返回错误码
+              //respDesc
+              th 交易结果描述
+              //cupF11
+              th 银联F11
+              //cost
+              th 交易花费时间
+              //callRespCode
+              th 外呼服务交易码
+              //evt
+              th 全局事件跟踪号
+        tfoot
+          tr
+              //tranId
+              th 交易码
+              //time
+              th 交易时间
+              //canrNo
+              th 交易卡号
+              //amt
+              th 交易金额
+              //respCode
+              th 交易返回错误码
+              //respDesc
+              th 交易结果描述
+              //cupF11
+              th 银联F11
+              //cost
+              th 交易花费时间
+              //callRespCode
+              th 外呼服务交易码
+              //evt
+              th 全局事件跟踪号
+        tbody
+          each log in logs.data
+            tr
+              td= log.tranId
+              td= log.time
+              td= log.cardNo
+              td= log.amt
+              td= log.respCode
+              td= log.respDesc
+              td= log.cupsF11
+              td= log.cost
+              td= log.callRespCOde
+              td= log.evt
