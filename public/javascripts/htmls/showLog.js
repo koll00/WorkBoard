@@ -3,4 +3,9 @@ $(document).ready(function(){
         "order": [[ 1, "desc" ]],
         destroy:true
     } );
+    $('#showLogTable').DataTable().search(
+    	$('#cardNo').val(),
+    	$('#global_regex').prop('checked'),
+        $('#global_smart').prop('checked')
+    ).draw();
 });

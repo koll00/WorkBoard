@@ -3,7 +3,7 @@ var exec = require('child_process').exec,
     url = require('url'),
     querystring = require('querystring'),
     fs= require('fs');
-    //iconv = require('iconv-lite');
+    iconv = require('iconv-lite');
 
 var FINGLOG = 'FIND LOG';
 var SHOWLOG = 'SHOW LOG';
@@ -35,21 +35,22 @@ exports.showLog = function(req, res){
 //			res.render('showLog', { title: SHOWLOG,  logs: items, params: param });
 //		}
 //	})
-	var child = process.spawn('dir');
+	
+	var dataTotal = '';
+	var child = process.spawn('help');
 	child.stdout.on('data', function(data){
-		console.log('stdout is ' + data);
+		dataTotal += data.toString();
 	});
 	
 	child.stderr.on('data', function(data){
-		console.log('error is ' + data);
+		res.render('findLog', { title: FINGLOG, params: param });
 	});
-	
-/*	child.on('error', function(data){
-		console.log('error is ' + data);
-	});*/
-	
+		
 	child.on('close', function(data) {
-		console.log('Child exited with code');
+		var file ='.\\routes\\test.json';
+		var items = JSON.parse(iconv.decode(fs.readFileSync(file),'GBK'));
+		//var items = eval('('+stdout+')');
+		res.render('showLog', { title: SHOWLOG,  logs: items, params: param });
 	});
 };
 
