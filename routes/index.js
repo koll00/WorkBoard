@@ -1,8 +1,8 @@
 var exec = require('child_process').exec,
-    process = require('child_process'),
+    spawn = require('child_process').spawn,
     url = require('url'),
     querystring = require('querystring'),
-    fs= require('fs');
+    fs= require('fs'),
     iconv = require('iconv-lite');
 
 var FINGLOG = 'FIND LOG';
@@ -21,25 +21,12 @@ exports.showLog = function(req, res){
 	var showLogQuery = url.parse(req.url).query;
 	var param = querystring.parse(showLogQuery);
 	
-	var cmdStr='/tmp/nodejs/scripts/cpftm.sh ' + param.envID + ' ' + 'date';
-	var cmdStr='dir';
-//	exec(cmdStr, function(err, stdout, stderr){
-//		if(err){
-//			res.render('showLog', { title: SHOWLOG, params: param });
-//		}else{
-//			//stdout = '';
-//			//var items = eval('('+stdout+')');
-//			var file ='.\\routes\\test.json';
-//			var items = JSON.parse(iconv.decode(fs.readFileSync(file),'GBK'));
-//			//var items = eval('('+stdout+')');
-//			res.render('showLog', { title: SHOWLOG,  logs: items, params: param });
-//		}
-//	})
+	var cmdStr='/tmp/nodejs/scripts/cpftm.sh';
 	
-	var dataTotal = '';
-	var child = process.spawn('help');
+	var itemsBuffer = '';
+	var child = process.spawn(cmdStr, [param.envID]);
 	child.stdout.on('data', function(data){
-		dataTotal += data.toString();
+		itemsBuffer += data.toString();
 	});
 	
 	child.stderr.on('data', function(data){
@@ -47,9 +34,11 @@ exports.showLog = function(req, res){
 	});
 		
 	child.on('close', function(data) {
-		var file ='.\\routes\\test.json';
-		var items = JSON.parse(iconv.decode(fs.readFileSync(file),'GBK'));
-		//var items = eval('('+stdout+')');
+		var itemString = itemsBuffer;
+		if(itemString==''){
+			res.render('findLog', { title: FINGLOG, params: param });
+		}
+		var items = eval('('+itemString+')');
 		res.render('showLog', { title: SHOWLOG,  logs: items, params: param });
 	});
 };
