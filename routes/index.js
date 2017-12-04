@@ -24,7 +24,7 @@ exports.showLog = function(req, res){
 	var cmdStr='/tmp/nodejs/scripts/cpftm.sh';
 	
 	var itemsBuffer = '';
-	var child = process.spawn(cmdStr, [param.envID]);
+	var child = spawn(cmdStr, [param.envID]);
 	child.stdout.on('data', function(data){
 		itemsBuffer += data.toString();
 	});
@@ -35,11 +35,12 @@ exports.showLog = function(req, res){
 		
 	child.on('close', function(data) {
 		var itemString = itemsBuffer;
-		if(itemString==''){
+		if(itemString.length == 0){
 			res.render('findLog', { title: FINGLOG, params: param });
+		}else{
+			var items = eval('('+itemString+')');
+			res.render('showLog', { title: SHOWLOG,  logs: items, params: param });
 		}
-		var items = eval('('+itemString+')');
-		res.render('showLog', { title: SHOWLOG,  logs: items, params: param });
 	});
 };
 
