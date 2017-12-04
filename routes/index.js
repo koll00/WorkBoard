@@ -22,19 +22,6 @@ exports.showLog = function(req, res){
 	var param = querystring.parse(showLogQuery);
 	
 	var cmdStr='/tmp/nodejs/scripts/cpftm.sh ' + param.envID + ' ' + 'date';
-	var cmdStr='dir';
-//	exec(cmdStr, function(err, stdout, stderr){
-//		if(err){
-//			res.render('showLog', { title: SHOWLOG, params: param });
-//		}else{
-//			//stdout = '';
-//			//var items = eval('('+stdout+')');
-//			var file ='.\\routes\\test.json';
-//			var items = JSON.parse(iconv.decode(fs.readFileSync(file),'GBK'));
-//			//var items = eval('('+stdout+')');
-//			res.render('showLog', { title: SHOWLOG,  logs: items, params: param });
-//		}
-//	})
 	
 	var dataTotal = '';
 	var child = process.spawn('help');
