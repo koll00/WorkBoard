@@ -1,0 +1,44 @@
+#findLogTitle
+ h1 龙网日志流水查询
+#findLog
+  form(action='showLog', method='get')
+    table
+      tr
+        td
+          label(for='date') 日期
+        td
+          input(type='text',id='date', name='date', value=params.date)
+        td
+          label(for='envID') 环境
+        td
+          select(type='text',name='envID')
+              if params.envID == 'PL2'
+                  option(type='text',name='PL2',value='PL2', selected='true') PL2
+                  option(type='text',name='PL3',value='PL3') PL3
+                  option(type='text',name='PL4',value='PL4') PL4
+              else if params.envID == 'PL3'
+                  option(type='text',name='PL2',value='PL2') PL2
+                  option(type='text',name='PL3',value='PL3', selected='true') PL3
+                  option(type='text',name='PL4',value='PL4') PL4
+              else if params.envID == 'PL4'
+                  option(type='text',name='PL2',value='PL2') PL2
+                  option(type='text',name='PL3',value='PL3') PL3
+                  option(type='text',name='PL4',value='PL4', selected='true') PL4
+              else
+                  option(type='text',name='PL2',value='PL2', selected='true') PL2
+                  option(type='text',name='PL3',value='PL3') PL3
+                  option(type='text',name='PL4',value='PL4') PL4
+        
+        td
+          label(for='date') 卡号
+        td
+          input(type='text', id='cardNo', name='cardNo', value=params.cardNo)
+       tr
+        td
+        td
+        td
+        td
+        td
+        td
+          input(type='submit', name='button', value='查找')
+     
