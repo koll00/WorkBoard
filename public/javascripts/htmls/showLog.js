@@ -8,4 +8,15 @@ $(document).ready(function(){
     	$('#global_regex').prop('checked'),
         $('#global_smart').prop('checked')
     ).draw();
+    
+    if($("#refresh").attr('checked')){
+    	setTimeout(function(){
+    		$("#showLogForm").submit();
+    	}, 10000)
+    };
+    
+    $("#refresh").change(function() {
+    	$("#showLogForm").submit();
+    }); 
 });
+

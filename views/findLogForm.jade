@@ -1,7 +1,7 @@
 #findLogTitle
  h1 龙网日志流水查询
 #findLog
-  form(action='showLog', method='get')
+  form(action='showLog', method='get', id='showLogForm')
     table
       tr
         td
@@ -33,6 +33,13 @@
           label(for='date') 卡号
         td
           input(type='text', id='cardNo', name='cardNo', value=params.cardNo)
+        td
+          label(for='refresh') 自动刷新
+        td
+          if params.refresh == 'on'
+            input(type='checkbox', id='refresh', name='refresh', checked)
+          else
+            input(type='checkbox', id='refresh',  name='refresh')
        tr
         td
         td
@@ -40,5 +47,7 @@
         td
         td
         td
-          input(type='submit', name='button', value='查找')
+        td
+        td
+          input(type='submit', id = 'button-search' name='button', value='查找')
      
