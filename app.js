@@ -34,6 +34,7 @@ app.get('/', routes.index);
 
 app.get('/showLog', routes.showLog);
 app.get('/findLog', routes.findLog);
+app.get('/kidding', routes.kidding);
 
 app.listen(3000, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
