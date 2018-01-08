@@ -9,32 +9,26 @@
         td
           input(type='text',id='date', name='date', value=params.date)
         td
+          label(for='systemID') 系统
+        td
+          input(type='hidden', id='systemIDValue', value=params.systemID)
+          select(type='text',name='systemID', id='systemID')
+            option(type='text',name='CES',value='1') CES
+            option(type='text',name='QPS',value='2') QPS
+        td
           label(for='envID') 环境
         td
-          select(type='text',name='envID')
-              if params.envID == 'PL2'
-                  option(type='text',name='PL2',value='PL2', selected='true') PL2
-                  option(type='text',name='PL3',value='PL3') PL3
-                  option(type='text',name='PL4',value='PL4') PL4
-              else if params.envID == 'PL3'
-                  option(type='text',name='PL2',value='PL2') PL2
-                  option(type='text',name='PL3',value='PL3', selected='true') PL3
-                  option(type='text',name='PL4',value='PL4') PL4
-              else if params.envID == 'PL4'
-                  option(type='text',name='PL2',value='PL2') PL2
-                  option(type='text',name='PL3',value='PL3') PL3
-                  option(type='text',name='PL4',value='PL4', selected='true') PL4
-              else
-                  option(type='text',name='PL2',value='PL2', selected='true') PL2
-                  option(type='text',name='PL3',value='PL3') PL3
-                  option(type='text',name='PL4',value='PL4') PL4
-        
+          input(type='hidden', id='envIDValue', value=params.envID)
+          select(type='text',name='envID', id='envID')
+            option(type='text',name='PL2',value='2') PL2
+            option(type='text',name='PL3',value='3') PL3
+            option(type='text',name='PL4',value='4') PL4
         td
           label(for='date') 卡号
         td
           input(type='text', id='cardNo', name='cardNo', value=params.cardNo)
         td
-          label(for='refresh') 自动刷新
+          label(for='refresh') 自动刷新(10s)
         td
           if params.refresh == 'on'
             input(type='checkbox', id='refresh', name='refresh', checked)
@@ -49,5 +43,5 @@
         td
         td
         td
+        td
           input(type='submit', id = 'button-search' name='button', value='查找')
-     

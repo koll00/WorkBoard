@@ -1,9 +1,14 @@
 $(document).ready(function(){
     $("#date").datepicker({
-    	dateFormat: "yy/mm/dd"
+        dateFormat: "yymmdd",
+        maxDate: 0,
+        minDate: -4
     });
-    //set today
-    var newDate = new Date();
-    $("#date").datepicker( "setDate",newDate.toLocaleDateString());
+    if($('#date').val()=="")
+        $("#date").datepicker('setDate',new Date());
+
+    $('#envID').val($("#envIDValue").val()==""?"2":$("#envIDValue").val());
+    $('#systemID').val($("#systemIDValue").val()==""?"1":$("#systemIDValue").val());
+    $('#systemID').attr('disabled',true);
 });
 

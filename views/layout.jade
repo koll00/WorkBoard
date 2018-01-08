@@ -5,19 +5,36 @@ html
       title= title
     block meta
       meta(charset='utf-8')
-    block scripts
+    block commmon_scripts
+      //jquery
       script(src='/javascripts/jquery-3.2.1.min.js')
+      //dataTables
+      script(src='/javascripts/plugins/jquery.js')
       script(src='/javascripts/plugins/jquery.dataTables.min.js')
       script(src='/javascripts/plugins/jquery-ui.min.js')
-      script(src='/javascripts/htmls/findLog.js')
-      script(src='/javascripts/htmls/showLog.js')
-    block link
-      link(rel='stylesheet', href='/stylesheets/style.css')
+      //layout
+      script(src='/javascripts/plugins/layout/jquery.layout.min.js')
+      script(src='/javascripts/htmls/layout.js')
+    block other_scripts
+    block commmon_link
+      //link(rel='stylesheet', href='/stylesheets/style.css')
+      //dataTables
       link(rel='stylesheet', href='/stylesheets/jquery.dataTables.min.css')
       link(rel='stylesheet', href='/stylesheets/jquery-ui.min.css')
-      
+      //layout
+      link(rel='stylesheet', href='/stylesheets/layout-default.css')
+    block other_link
   body
-    block main
-    
-    block foot
-      include footer.jade
+    div.ui-layout-north
+      block header
+        include header.jade
+    div.ui-layout-east
+      block right
+    div.ui-layout-center
+      block main
+    div.ui-layout-west
+      block left
+        include westMenu.jade
+    div.ui-layout-south
+      block foot
+        include footer.jade
