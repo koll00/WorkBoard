@@ -17,6 +17,11 @@ $(document).ready(function(){
     
     $("#refresh").change(function() {
     	$("#showLogForm").submit();
-    }); 
+    });
+    
+    var myLayout = $('body').layout();
+    myLayout.hide("east");
+    myLayout.hide("south");
+    myLayout.hide("north");
 });
 
