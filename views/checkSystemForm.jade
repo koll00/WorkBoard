@@ -1,0 +1,27 @@
+#findLogTitle
+ h1 系统报错自动检测（当系统返回报错为01的情况下！请勿重复操作！重复操作并没有什么意义）
+#findLog
+  form(action='checkSystem', method='get', id='autoCheck')
+    table
+      tr
+        td
+          label(for='systemID') 系统
+        td
+          input(type='hidden', id='systemIDValue')
+          select(type='text',name='systemID', id='systemID')
+            option(type='text',name='CES',value='1') CES
+            //option(type='text',name='QPS',value='2') QPS
+        td
+          label(for='envID') 环境
+        td
+          input(type='hidden', id='envIDValue')
+          select(type='text',name='envID', id='envID')
+            option(type='text',name='PL2',value='2') PL2
+            option(type='text',name='PL3',value='3') PL3
+            option(type='text',name='PL4',value='4') PL4
+       tr
+        td
+        td
+        td
+        td
+          input(type='submit', id = 'button-submit' name='button', value='提交')
