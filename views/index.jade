@@ -1,4 +1,25 @@
 extends layout
-  
+
+block other_scripts
+  script(src='/javascripts/htmls/index.js')
+    
 block main
-    h1= title
+  ul
+    li
+      a(href="/findLog") 查询交易流水
+      h3 查询流水，根据测试的系统选择。谢谢！
+      //ul
+      //  li
+      //    a(href="http://www.baidu.com") test
+    li
+      a(href="/downloadFiles") 银联仿真工具使用文档
+      h3 下载银联文档，仅作参考，不作为生产依据
+    li
+      a(href="/kidding") 银联报文查询
+      h3 暂时不提供
+    li
+      a(href="/kidding") 行内服务方报文查询
+      h3 暂时不提供
+    li
+      a(href="/autoCheckSystem") 系统异常检测
+      h3 当系统返回报错为01的情况下！请勿重复操作！重复操作并没有什么意义

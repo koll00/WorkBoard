@@ -7,49 +7,35 @@ var exec = require('child_process').exec,
 
 var FINGLOG = 'FIND LOG';
 var SHOWLOG = 'SHOW LOG';
+var KIDDING = 'KIDDING';
+var DOWNLOAD = 'DOWNLOAD';
 /*
  * GET home page.
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Express' })
+  res.render('index', { title: 'WELCOME' })
 };
 
-exports.showLog = function(req, res){
-	console.log(SHOWLOG);
-	
-	var showLogQuery = url.parse(req.url).query;
-	var param = querystring.parse(showLogQuery);
-	
-	var cmdStr='/tmp/nodejs/scripts/cpftm.sh';
-	
-	var itemsBuffer = '';
-	var child = spawn(cmdStr, [param.envID]);
-	child.stdout.on('data', function(data){
-		itemsBuffer += data.toString();
-	});
-	
-	child.stderr.on('data', function(data){
-		res.render('findLog', { title: FINGLOG, params: param });
-	});
-		
-	child.on('close', function(data) {
-		var itemString = itemsBuffer;
-		if(itemString.length == 0){
-			res.render('findLog', { title: FINGLOG, params: param });
-		}else{
-			var items = eval('('+itemString+')');
-			res.render('showLog', { title: SHOWLOG,  logs: items, params: param });
-		}
-	});
-};
-
-exports.findLog = function(req, res){
-	console.log(FINGLOG);
+exports.kidding = function(req, res){
+	console.log(KIDDING);
 	
 	var findLogQuery = url.parse(req.url).query;
 	var param = querystring.parse(findLogQuery);
 	
-	res.render('findLog', { title: FINGLOG, params: param  })
+	res.render('kidding', { title: KIDDING, params: param  })
 };
+
+exports.downloadFiles = function(req, res,next){
+	console.log(DOWNLOAD);
 	
+	var urlQuery = url.parse(req.url).query;
+	var param = querystring.parse(urlQuery);
+	
+	res.download(__dirname + '\\..\\public\\attachments\\中国银联离线仿真使用指引.pdf', '中国银联离线仿真使用指引.pdf');
+};
+
+exports.noFunction = function(req, res, next){
+    console.log(" NO!");
+    res.render('kidding', { title: 'noFunction'});
+};

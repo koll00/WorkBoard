@@ -1,12 +1,11 @@
 {
-    "name": "WorkBoard",
-    "version": "0.0.1",
-    "private": true,
-    "dependencies": {
-        "express": "2.5.8",
-        "jade": ">= 0.0.1",
-        "iconv-lite": "",
-        "forever":"0.15.3",
-        "eye":""
-    }
+  "name": "WorkBoard",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "^4.16.2",
+    "eye": "0.0.3",
+    "iconv-lite": "^0.4.19",
+    "jade": "^1.11.0"
+  }
 }
