@@ -1,0 +1,6 @@
+1 PL1 128.192.139.40:1521/cdpodb CES cdp/cdp
+2 PL2 128.192.122.170:1521/cdpodb CES cdp/cdp
+3 PL3 128.192.139.40:1521/cdpodb CES cdp/cdp
+4 PL4 128.192.122.159:1521/cdpodb CES cdp/cdp
+5 VT1 128.192.139.40:1521/cdpodb CES cdp/cdp
+6 PL1 128.192.139.40:1521/cdpodb CES cdp/cdp
