@@ -26,16 +26,7 @@ exports.kidding = function(req, res){
 	res.render('kidding', { title: KIDDING, params: param  })
 };
 
-exports.downloadFiles = function(req, res,next){
-	console.log(DOWNLOAD);
-	
-	var urlQuery = url.parse(req.url).query;
-	var param = querystring.parse(urlQuery);
-	
-	res.download(__dirname + '\\..\\public\\attachments\\中国银联离线仿真使用指引.pdf', '中国银联离线仿真使用指引.pdf');
-};
-
-exports.noFunction = function(req, res, next){
+exports.noFunction = function(req, res){
     console.log(" NO!");
     res.render('kidding', { title: 'noFunction'});
 };

@@ -1,0 +1,39 @@
+
+extends layout
+
+block other_scripts
+  script(src='/javascripts/htmls/cupsCr.js')
+
+block main
+  form(action='cupsCrOk', method='get', id='cupsCrOk') 
+    table
+      tr
+        td
+          label(for='systemID') 系统
+        td
+          //input(type='hidden', id='systemIDValue', value=params.systemID)
+          select(type='text',name='systemID', id='systemID')
+            option(type='text',name='CES',value='CES') CES
+            //option(type='text',name='NCUPS',value='NCUPS') N-CUPS
+            //option(type='text',name='NCUPS',value='CUPSHK') CUPSHK
+        td
+          label(for='envID') 环境
+        td
+          //input(type='hidden', id='envIDValue', value=params.envID)
+          select(type='text',name='envID', id='envID')
+            option(type='text',name='PL2',value='PL2') PL2
+            option(type='text',name='PL3',value='PL3') PL3
+            option(type='text',name='PL4',value='PL4') PL4
+            option(type='text',name='VT1',value='VT1') VT1
+        td
+          label(for='sys_trace_id') 全局事件跟踪号
+        td
+          input(type='text', id='sys_trace_id', name='sys_trace_id')
+      tr
+        td
+        td
+        td
+        td
+        td
+        td
+          input(type='submit', id = 'button-search' name='button', value='执行')

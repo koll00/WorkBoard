@@ -18,11 +18,12 @@ exports.checkSystemInput = function(req, res, next){
     if(query == null){
         next();
     }
-    if(param.session == null){
+    if(param.session == null || param.session != 1){
         next();
     }
     
     res.render('checkSystem', { title: CHECKSYSTEM});
+    return;
 };
 
 exports.autoCheck = function(req, res, next){
@@ -34,7 +35,6 @@ exports.autoCheck = function(req, res, next){
 	var cmdStr='/tmp/nodejs/scripts/fixPart.sh';
 	var cmdStr='help';
 	
-	var systems=['CES','QPS'];
 	var itemsBuffer = '';
 	//var child = spawn(cmdStr, ['PL' + param.envID, systemID[param.systemID]]);
 	var child = spawn(cmdStr);
@@ -51,31 +51,6 @@ exports.autoCheck = function(req, res, next){
 	});
 };
 
-exports.autoCheck = function(req, res, next){
-    console.log(AUTOCHECK);
-    
-    var query = url.parse(req.url).query;
-    var param = querystring.parse(query);
-    
-    var cmdStr='/tmp/nodejs/scripts/fixPart.sh';
-    var cmdStr='help';
-    
-    var systems=['CES','QPS'];
-    var itemsBuffer = '';
-    //var child = spawn(cmdStr, ['PL' + param.envID, systemID[param.systemID]]);
-    var child = spawn(cmdStr);
-    child.stdout.on('data', function(data){
-        itemsBuffer += data.toString();
-    });
-    
-    child.stderr.on('data', function(data){
-        res.render('findLog', { title: AUTOCHECK});
-    });
-        
-    child.on('close', function(data) {
-            res.render('checkSystem', { title: AUTOCHECK});
-    });
-};
-exports.checkSuccess = function(req, res, next){
+exports.checkSuccess = function(req, res){
     res.render('success', { title: SUCCESS});
 };

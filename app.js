@@ -8,6 +8,8 @@ var express = require('express')
   , http = require('http')
   , logRoutes= require('./routes/toLogs')
   , checkRoutes= require('./routes/toCheckSystem')
+  , fmtRoutes= require('./routes/toFmts')
+  , cupscr= require('./routes/cupscr')
   ;
 
 var app = express();
@@ -42,14 +44,20 @@ app.get('/', routes.index);
 app.get('/showLog', logRoutes.showLog);
 app.get('/findLog', logRoutes.findLog);
 //下载文档
-app.get('/downloadFiles', routes.downloadFiles);
+app.get('/downloadFiles', routes.noFunction);
 //系统自动检测
 app.get('/autoCheckSystem', checkRoutes.checkSystemInput);
 app.get('/autoCheckSystem', routes.noFunction);
 app.get('/checkSystem', checkRoutes.checkSuccess);
+//fmt日志相关
+app.get('/showFmt', fmtRoutes.showFmt);
+//银联贷记
+app.get('/cupsCr', cupscr.cupsCrsubForm);
+app.get('/cupsCrOK', cupscr.cupsCrOk);
 
 //默认不提供
 app.get('/kidding', routes.noFunction);
+app.get('/showFmt', fmtRoutes.show);
 
 /*app.listen(3000, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

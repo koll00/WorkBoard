@@ -19,17 +19,20 @@ exports.showLog = function(req, res){
 	
 	var cmdStr='/tmp/nodejs/scripts/cpftm.sh';
 	var cmdStr='help';
-	system=['CES','QPS'];
-	systemID=system[param.systemID];
-	
+	cmdStr=param.cmdStr;
+	//system=['CES','QPS'];
+	//systemID=system[param.systemID];
+	//envIDs=['','PL1','PL2','PL3','PL4','VT1'];
+	//envID = envIDs[param.envID];
 	var itemsBuffer = '';
-	var child = spawn(cmdStr,['PL' + param.envID, systemID]);
-	//var child = spawn(cmdStr);
+	//var child = spawn(cmdStr,[param.envID, param.systemID]);
+	var child = spawn(cmdStr);
 	child.stdout.on('data', function(data){
 		itemsBuffer += data.toString();
 	});
 	
 	child.stderr.on('data', function(data){
+		console.log('error');
 		res.render('findLog', { title: FINGLOG, params: param });
 	});
 		
@@ -39,8 +42,8 @@ exports.showLog = function(req, res){
 			res.render('findLog', { title: FINGLOG, params: param });
 		}else{
 			var file ='.\\routes\\test.json';
-			//var items = JSON.parse(iconv.decode(fs.readFileSync(file),'GBK'));
-			var items = eval('('+itemString+')');
+			var items = JSON.parse(iconv.decode(fs.readFileSync(file),'GBK'));
+			//var items = eval('('+itemString+')');
 			res.render('showLog', { title: SHOWLOG,  logs: items, params: param });
 		}
 	});

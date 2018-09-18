@@ -16,11 +16,6 @@ exports.downloadFiles = function(req, res,next){
 	
 	var urlQuery = url.parse(req.url).query;
 	var param = querystring.parse(urlQuery);
-	console.log(param.file);
-//	res.sendfile('./1.pdf','1.pdf');
-	res.download(__dirname+'../1.pdf','1.pdf');
-	//res.download('..//public\\1.pdf');
-//	res.download('..//public\\downloadFile\\1.pdf');
-	//res.sendfile('中国银联离线仿真使用指引.pdf', { root:__dirname+'../donwloadFile' });
-	//res.render('downloadFiles', { title: DOWNLOAD})
+	
+	res.download(__dirname + '\\..\\public\\attachments\\中国银联离线仿真使用指引.pdf', '中国银联离线仿真使用指引.pdf');
 };
